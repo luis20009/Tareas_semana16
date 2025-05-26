@@ -10,14 +10,16 @@ const Title = () => {
 };
 const Anecdotaza = ({text1,text2}) => {
   return (
-    <div className="p">
-      <p >{text1}</p>
-      <p>Con una cantidad de votos de: {text2}</p>
+    <div>
+      <p className="j">{text1}</p>
+      <p className="j1">Con una cantidad de votos de: {text2}</p>
     </div>
   );
 }
-const Boton = ({onClic, children}) =>(
-      <button onClick={onClic}>{children}</button>
+const Boton = ({className,onClic, children}) =>(
+     
+      <button className={className} onClick={onClic}>{children}</button>
+      
 );
 
 
@@ -63,30 +65,29 @@ const App = () => {
     return (
     <div>
       <Title />
-      <p>{anecdotes[selected][0]}</p>
-      <Boton onClic={voto}>Votar</Boton>
-      <Boton onClic={alatorios}>Siguiente</Boton>
-      <h2>Anecdota con más votos:</h2>
-      <p>No hay anécdotas para mostrar.</p>
+      <p className="p">{anecdotes[selected][0]}</p>
+      <Boton className="ñ" onClic={voto}>Votar</Boton>
+      <Boton className="ñ" onClic={alatorios}>Siguiente</Boton>
+      <h2 className="h2">Anecdota con más votos:</h2>
+      <p className="px">No hay anécdotas votadas.</p>
     </div>
   );
   }
-
   return (
     <div>
       <Title />
-      <p>{anecdotes[selected][0]}</p>
-      <Boton onClic={voto}>Votar</Boton>
-      <Boton onClic={alatorios}>Siguiente</Boton>
-      <h2>Anecdota con más votos:</h2>
+      <p className="p">{anecdotes[selected][0]}</p>
+      <Boton className="ñ" onClic={voto}>Votar</Boton>
+      <Boton className="ñ" onClic={alatorios}>Siguiente</Boton>
+      <h2 className="h2">Anecdota con más votos:</h2>
       <Anecdotaza text1={maxVotes[0]}  text2={maxVotes[1]}/>
-      <input
+      <input className="input"
       type ="text"
       value={nuevaAnecdota}
       onChange={(e) => setNuevaAnecdota(e.target.value)}
       placeholder="Añadir nueva anécdota"
       />
-      <Boton className="hilt" onClic={agregarAnecdota}>Añadir</Boton>
+      <Boton className="x" onClic={agregarAnecdota}>Añadir</Boton>
     </div>
   );
 };
