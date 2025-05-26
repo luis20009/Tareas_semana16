@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 body {
-    background-color: rgb(69, 115, 115);
+    background-image: url('e138ecba424add6ae06d9dcba56c2752.jpg');
 }
+.Mercury{
+    font-size: 40px;
+    color :aqua;
+    font-family: 'Bebas Neue', Arial, sans-serif;
+}
+.p{
+    text-align: center; /* Esto centra solo el texto */
+}
+

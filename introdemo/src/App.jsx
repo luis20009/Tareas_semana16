@@ -4,10 +4,22 @@ import "./App.css"
 const Title = () => {
   return (
     <div>
-      <h1>Anecdota del día :</h1>
+      <h1 class="Mercury">Anecdota del día :</h1>
     </div>
   );
 };
+const Anecdotaza = ({text1,text2}) => {
+  return (
+    <div className="p">
+      <p >{text1}</p>
+      <p>Con una cantidad de votos de: {text2}</p>
+    </div>
+  );
+}
+const Boton = ({onClic, children}) =>(
+      <button onClick={onClic}>{children}</button>
+);
+
 
 const App = () => {
   const [anecdotes, setAnecdotes] = useState([
@@ -35,7 +47,16 @@ const App = () => {
     newAnecdotes[selected][1] += 1;
     setAnecdotes(newAnecdotes);
   };
+  
+  const [nuevaAnecdota, setNuevaAnecdota] = useState("");
 
+  const agregarAnecdota = () => {
+    if (nuevaAnecdota.trim() !== ""){
+    setAnecdotes([...anecdotes, [nuevaAnecdota, 0]]);
+    setNuevaAnecdota("");
+  }
+}
+ 
   // Encontrar la anécdota con más votos
   const maxVotes = anecdotes.reduce((max, a) => (a[1] > max[1] ? a : max));
   if (maxVotes[1]=== 0) {
@@ -43,9 +64,8 @@ const App = () => {
     <div>
       <Title />
       <p>{anecdotes[selected][0]}</p>
-      <button onClick={alatorios}>Siguiente</button>
-      <button onClick={voto}>Votar</button>
-
+      <Boton onClic={voto}>Votar</Boton>
+      <Boton onClic={alatorios}>Siguiente</Boton>
       <h2>Anecdota con más votos:</h2>
       <p>No hay anécdotas para mostrar.</p>
     </div>
@@ -56,11 +76,17 @@ const App = () => {
     <div>
       <Title />
       <p>{anecdotes[selected][0]}</p>
-      <button onClick={alatorios}>Siguiente</button>
-      <button onClick={voto}>Votar</button>
-
+      <Boton onClic={voto}>Votar</Boton>
+      <Boton onClic={alatorios}>Siguiente</Boton>
       <h2>Anecdota con más votos:</h2>
-      <p>{maxVotes[0]} con {maxVotes[1]} votos</p>
+      <Anecdotaza text1={maxVotes[0]}  text2={maxVotes[1]}/>
+      <input
+      type ="text"
+      value={nuevaAnecdota}
+      onChange={(e) => setNuevaAnecdota(e.target.value)}
+      placeholder="Añadir nueva anécdota"
+      />
+      <Boton className="hilt" onClic={agregarAnecdota}>Añadir</Boton>
     </div>
   );
 };
