@@ -11,7 +11,7 @@ const Title = () => {
 const Anecdotaza = ({text1,text2}) => {
   return (
     <div>
-      <p className="j">{text1}</p>
+      <p  className="j">{text1}</p>
       <p className="j1">Con una cantidad de votos de: {text2}</p>
     </div>
   );
@@ -35,6 +35,8 @@ const App = () => {
     ["The only way to go fast, is to go well.", 0]
   ]);
 
+  const  Total_v = anecdotes.reduce((total,b)=> b[1] + total,0);
+  const Total_p = anecdotes.length;
   const [selected, setSelected] =useState(0);
   const alatorios = () => {
     let indice;
@@ -60,8 +62,10 @@ const App = () => {
 }
  
   // Encontrar la anécdota con más votos
-  const maxVotes = anecdotes.reduce((max, a) => (a[1] > max[1] ? a : max));
-  if (maxVotes[1]=== 0) {
+  const maxVotes = Math.max(...anecdotes.map(a=> a[1]));
+  const anecdotasTop = anecdotes.filter(a => a[1] === maxVotes &&  maxVotes>0);
+
+  if (maxVotes=== 0) {
     return (
     <div>
       <Title />
@@ -74,13 +78,17 @@ const App = () => {
   );
   }
   return (
-    <div>
-      <Title />
-      <p className="p">{anecdotes[selected][0]}</p>
-      <Boton className="ñ" onClic={voto}>Votar</Boton>
-      <Boton className="ñ" onClic={alatorios}>Siguiente</Boton>
-      <h2 className="h2">Anecdota con más votos:</h2>
-      <Anecdotaza text1={maxVotes[0]}  text2={maxVotes[1]}/>
+      <div>
+    <Title />
+    <p className="p" key={selected}>{anecdotes[selected][0]}</p>
+    <p className="xx" key={anecdotes[selected]}>Tiene {anecdotes[selected][1]} votos.</p>
+    <Boton className="ñ" onClic={voto}>Votar</Boton>
+    <Boton className="ñ" onClic={alatorios}>Siguiente</Boton>
+    <h2 className="h2">Anecdota(s) con más votos:</h2>
+      {anecdotasTop.map((a, i) => (
+        <Anecdotaza key={i} text1={a[0]} text2={a[1]} />
+      ))
+    }
       <input className="input"
       type ="text"
       value={nuevaAnecdota}
@@ -88,6 +96,24 @@ const App = () => {
       placeholder="Añadir nueva anécdota"
       />
       <Boton className="x" onClic={agregarAnecdota}>Añadir</Boton>
+      <div>
+  <h2 className="h2">Gráfica de votos:</h2>
+  <p className="hp">Total de votos: {Total_v}</p>
+  <p className="hp">Total de Anecdotas: {Total_p}</p>
+  <div className="bar-chart">
+    {anecdotes.map((anecdota, i) => (
+      <div className="bar-container" key={i}>
+        <span className="bar-label">{anecdota[0]}</span>
+        <div
+          className="bar"
+          style={{ width: `${anecdota[1] * 30}px` }} // Ajusta el multiplicador según tus votos
+        >
+          {anecdota[1]}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
     </div>
   );
 };

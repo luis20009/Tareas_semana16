@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 body {
-    background-image: url('e138ecba424add6ae06d9dcba56c2752.jpg');
+    background-color: black;
 }
 .Mercury{
     font-size: 40px;
@@ -13,8 +13,29 @@ body {
     margin-left: 30px;
     color: white;
     font-family: 'Bebas Neue', Arial, sans-serif;
+    opacity: 0;
+  animation: fadeIn 0.4s forwards;
 
 }
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.xx{
+    font-size: 25px;
+    margin-left: 30px;
+    color: white;
+    font-family: 'Bebas Neue', Arial, sans-serif;
+    opacity: 0;
+  animation: fadeIn 0.4s forwards;
+}
+@keyframes fadeIn {
+    to{
+        opacity: 1;
+    }
+}
+
 .ñ{
     font-size: 25px;
     margin-left: 30px;
@@ -76,7 +97,7 @@ body {
 .j1{
      font-size: 25px;
     margin-left: 30px;
-    color: rgb(44, 84, 4);
+    color: rgb(160, 255, 65);
     font-family: 'Bebas Neue', Arial, sans-serif;
 }
 
@@ -100,4 +121,38 @@ body {
     font-family: 'Bebas Neue', Arial, sans-serif;
 
 }
+.bar-chart {
+  margin: 30px 0 0 30px;
+  width: 80%;
+}
+.bar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.bar-label {
+  width: 200px;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  font-family: 'Bebas Neue', Arial, sans-serif;
+}
+.bar {
+  background: #4caf50;
+  color: white;
+  padding: 8px 0 8px 10px;
+  border-radius: 4px;
+  min-width: 30px;
+  transition: width 0.5s;
+  font-family: 'Bebas Neue', Arial, sans-serif;
+}
+
+.hp{
+    font-size: 30px;
+    color :rgb(92, 255, 113);
+    font-family: 'Bebas Neue', Arial, sans-serif;
+    margin-left: 30px;
+    margin-top: 55px;
+}
+
 
